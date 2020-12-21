@@ -1,0 +1,30 @@
+div.tempBox {
+    display: inline;
+    float:left;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 20px;
+    border-color:rgb(180, 180, 180);
+    margin: 10px;
+  }
+  
+  p.temp {
+    color: rgb(125, 123, 126);
+    font-size: 150px;
+    text-align: center;
+    font-family: "Nunito",sans-serif;
+    font-weight: 900;
+    width: 400px;
+    margin-top: 10px;
+    margin-bottom: -30px;
+  }
+  p.city {
+    font-size: 50px;
+    text-align: center;
+    font-family: "Nunito",sans-serif;
+    font-weight: 600;
+    color: rgb(150, 147, 151);
+    margin-top: 0px;
+    margin-bottom: 40px;
+  }
+  
