@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>TempCollect display</title>
+        <link rel=”stylesheet” type=”text/css” href=”{{ url_for('static',filename='styles/style.css') }}”>
+        <link href="/static/styles/style.css" rel="stylesheet">
+        <link rel="stylesheet" id="font-nunito-css" href="https://fonts.googleapis.com/css2?family=Nunito%3Awght%40200%3B700%3B900&amp;display=swap&amp;ver=20200703" type="text/css" media="all">
+        <meta http-equiv="refresh" content="300" >
+    </head>
+    <body>
+        <div style="display: inline">
+            <div class="tempBox">
+                <p class="temp">{{data1}}</p>
+                <p class="city">Wattignies</p>
+            </div>
+            <div class="tempBox">
+                <p class="temp">{{data2}}</p>
+                <p class="city">Firbeix</p>
+            </div>
+        </div>
+    </body>
+</html>
