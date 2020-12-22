@@ -15,4 +15,8 @@ def index():
     if '.' not in firbeixTemp: firbeixTemp = firbeixTemp + '.0'
     tempPart = firbeixTemp.split('.')
     firbeixTemp = tempPart[0]+'°'+tempPart[1][0:1]
-    return render_template('index.html', data1=wattigniesTemp , data2=firbeixTemp) 
+    return render_template('index.html', data1=wattigniesTemp , data2=firbeixTemp)
+
+@tempCollectApp.route('/pullNewVersion', methods=['POST'])
+def pullNewVersion():
+    return render_template('pullNewVersion.html')
