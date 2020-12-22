@@ -3,7 +3,6 @@ from flaskapp import tempCollectApp
 from flaskapp import firbeix
 from flaskapp import wattignies
 import git
-git.refresh("/usr/bin/git")
 
 @tempCollectApp.route('/')
 @tempCollectApp.route('/index')
@@ -23,6 +22,7 @@ def index():
 def pullNewVersion():
     # return render_template('pullNewVersion.html')
     if request.method == 'POST':
+        git.refresh("/usr/bin/git")
         repo = git.Repo('https://github.com/godestalbin/tempcollect.git')
         origin = repo.remotes.origin
         origin.pull()
