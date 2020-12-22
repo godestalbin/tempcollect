@@ -23,7 +23,7 @@ def pullNewVersion():
     # return render_template('pullNewVersion.html')
     if request.method == 'POST':
         git.refresh("/usr/bin/git")
-        repo = git.Repo('https://github.com/godestalbin/tempcollect.git')
+        repo = git.Repo('/var/www/tempcollect')
         origin = repo.remotes.origin
         origin.pull()
         return 'Updated PythonAnywhere successfully', 200
