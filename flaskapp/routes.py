@@ -2,7 +2,8 @@ from flask import render_template, request
 from flaskapp import tempCollectApp
 from flaskapp import firbeix
 from flaskapp import wattignies
-# import git
+import git
+git.refresh("/usr/bin/git")
 
 @tempCollectApp.route('/')
 @tempCollectApp.route('/index')
