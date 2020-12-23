@@ -37,6 +37,7 @@ h1 {
   }
   
   P.refreshTime {
+    padding-top: 20px;
     font-family: 'Chewy';
     color:rgb(180, 180, 180)
   }
