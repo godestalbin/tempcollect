@@ -3,7 +3,9 @@ from flaskapp import tempCollectApp
 from flaskapp import firbeix
 from flaskapp import wattignies
 import os
-os.environ['GIT_PYTHON_GIT_EXECUTABLE'] = "/usr/bin/git"
+import platform
+if platform.system() == 'Linux':
+    os.environ['GIT_PYTHON_GIT_EXECUTABLE'] = "/usr/bin/git"
 import git
 
 @tempCollectApp.route('/')
