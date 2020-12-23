@@ -2,6 +2,8 @@ from flask import render_template, request
 from flaskapp import tempCollectApp
 from flaskapp import firbeix
 from flaskapp import wattignies
+import os
+os.environ['GIT_PYTHON_GIT_EXECUTABLE'] = "/usr/bin/git"
 import git
 
 @tempCollectApp.route('/')
@@ -22,10 +24,11 @@ def index():
 def pullNewVersion():
     # return render_template('pullNewVersion.html')
     if request.method == 'POST':
-        git.refresh("/usr/bin/git")
+        # git.refresh("/usr/bin/git")
         repo = git.Repo('/var/www/tempcollect')
+        # repo = git.Repo('C:/Users/20000263/Documents/Dev/tempcollect')
         origin = repo.remotes.origin
         origin.pull()
-        return 'Updated PythonAnywhere successfully', 200
+        return 'Tempcollect git pull completed successfully', 200
     else:
         return 'Wrong event type', 400
