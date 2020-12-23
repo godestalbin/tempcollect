@@ -8,6 +8,13 @@ div.tempBox {
     background-color: rgb(248, 248, 248);
     margin: 10px;
   }
+
+h1 {
+  font-family: 'Fredericka the Great';
+  color:rgb(180, 180, 180);
+  font-weight: 400;
+  font-size: 50px;
+}
   
   p.temp {
     color: rgb(125, 123, 126);
@@ -29,3 +36,7 @@ div.tempBox {
     margin-bottom: 40px;
   }
   
+  P.refreshTime {
+    font-family: 'Chewy';
+    color:rgb(180, 180, 180)
+  }
