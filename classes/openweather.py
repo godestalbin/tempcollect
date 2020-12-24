@@ -1,4 +1,7 @@
-from . import config
+# from . import config
+print("openweather:", __name__)
+if __name__ == "classes.openweather": from . import config
+else: import config
 import requests
 
 class OpenWeather:
