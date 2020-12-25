@@ -2,6 +2,7 @@ from flask import render_template, request
 from flaskapp import tempCollectApp
 from flaskapp import firbeix
 from flaskapp import wattignies
+from flaskapp import mongo
 import os
 import platform
 if platform.system() == 'Linux':
@@ -21,6 +22,28 @@ def index():
     tempPart = firbeixTemp.split('.')
     firbeixTemp = tempPart[0]+'°'+tempPart[1][0:1]
     return render_template('index.html', data1=wattigniesTemp , data2=firbeixTemp)
+
+@tempCollectApp.route('/tempChart')
+def tempChart():
+    firbeixTemp = []
+    xAxis = []
+    for temp in mongo.get({'city': 'Firbeix'}):
+        xAxis = xAxis + [temp['date'].strftime('%Y-%m-%d %H:%M:%S')]
+        firbeixTemp = firbeixTemp + [temp['temp']]
+    wattigniesTemp = []
+    for temp in mongo.get({'city': 'Wattignies'}):
+        wattigniesTemp = wattigniesTemp + [temp['temp']]
+
+
+    data1 = {
+                    'name': 'Firbeix',
+                    'data': firbeixTemp
+                }
+    data2 = {
+                    'name': 'Wattignies',
+                    'data': wattigniesTemp
+                }
+    return render_template('tempchart.html', xAxis=xAxis, data1=data1, data2=data2)
 
 @tempCollectApp.route('/pullNewVersion', methods=['POST'])
 def pullNewVersion():
