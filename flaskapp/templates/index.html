@@ -26,10 +26,17 @@
             <p id=refreshTime class="refreshTime"></p>
         </div>
         <div>
-            <a href="/tempChart?groupBy=1&startDate=2020-12-24&endDate=2050-12-31">
+            <a id=leftArrow href="">
                 <img alt="Left arrow" src="/static/images/Left arrow.png">
              </a>
         </div>
+        <script type="text/javascript">
+            tomorrow = new Date()
+            tomorrow.setDate(tomorrow.getDate() + 1)
+            startDate = new Date()
+            startDate.setDate(startDate.getDate() - 7)
+            document.getElementById('leftArrow').href = '/tempChart?groupBy=1&startDate=' + startDate.toISOString().substring(0,10) + '&endDate=' + tomorrow.toISOString().substring(0,10)
+        </script>    
 </body>
 
     <script type="text/javascript">

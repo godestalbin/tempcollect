@@ -67,8 +67,9 @@ def tempChart():
                     'name': 'Wattignies',
                     'data': wattigniesTemp
                 }
-    dateRange = "&startDate=" + request.args.get('startDate').rstrip() + "&endDate=" + request.args.get('endDate')
-    return render_template('tempchart.html', groupBy=groupBy, dateRange=dateRange, xAxis=xAxis, data1=data1, data2=data2)
+    # dateRange = "&startDate=" + request.args.get('startDate').rstrip() + "&endDate=" + request.args.get('endDate')
+    # print(dateRange)
+    return render_template('tempchart.html', groupBy=groupBy, startDate=request.args.get('startDate').rstrip(), endDate=request.args.get('endDate'), xAxis=xAxis, data1=data1, data2=data2)
 
 @tempCollectApp.route('/pullNewVersion', methods=['POST'])
 def pullNewVersion():

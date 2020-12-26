@@ -19,7 +19,7 @@
         </figure>
 
         <div style="width:90%; margin: 0 auto;">
-            <div id="slider"></div>
+            <div id="dateSlider"></div>
         </div>
       
         <div>
@@ -30,12 +30,12 @@
             </div>
             <div class="leftFloat">
                 <div>
-                    <a href="/tempChart?groupBy={{groupBy - 1}}{{dateRange}}">
+                    <a href="/tempChart?groupBy={{groupBy - 1}}&startDate={{startDate}}&endDate={{endDate}}">
                         <img alt="Up arrow" src="/static/images/Up arrow.png">
                     </a>
                 </div>
                 <div>
-                    <a href="/tempChart?groupBy={{groupBy + 1}}{{dateRange}}">
+                    <a href="/tempChart?groupBy={{groupBy + 1}}&startDate={{startDate}}&endDate={{endDate}}">
                         <img alt="Down arrow" src="/static/images/Down arrow.png">
                     </a>
                 </div>
@@ -77,15 +77,22 @@
 
         <script>
             //<!--
-            $("#slider").dateRangeSlider({
+            tomorrow = new Date()
+            tomorrow.setDate(tomorrow.getDate() + 1)
+            $("#dateSlider").dateRangeSlider({
             bounds:{
-                min: new Date(2020, 12, 24),
-                max: new Date(2021, 12, 31)
+                min: new Date('2020-12-24'), //First data created on this date, no data earlier
+                max: tomorrow //Date(2021, 02, 31)
             },
             defaultValues:{
-                min: new Date(2020, 12, 24),
-                max: new Date(2021, 01, 31)
+                min: new Date('{{startDate}}'),
+                max: new Date('{{endDate}}')
             }
+            });
+            $("#dateSlider").bind("valuesChanged", function(e, data){
+                if (data.values.min != new Date('{{startDate}}') || data.values.max != new Date('{{endDate}}')) {
+                    window.location.replace('/tempChart?groupBy={{groupBy}}&startDate=' + data.values.min.toISOString().substring(0,10) + '&endDate=' + data.values.max.toISOString().substring(0,10));
+                 }
             });
             //-->
         </script>
