@@ -1,4 +1,4 @@
-print(__name__)
+# print('mongodb:', __name__)
 if __name__ == "classes.mongodb": from . import config
 else: import config
 from pymongo import MongoClient

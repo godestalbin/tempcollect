@@ -9,6 +9,13 @@ div.tempBox {
     margin: 10px;
   }
 
+div.leftFloat {
+  float:left;
+}
+
+div {
+}
+
 h1 {
   font-family: 'Fredericka the Great';
   color:rgb(180, 180, 180);
@@ -42,3 +49,5 @@ h1 {
     font-family: 'Chewy';
     color:rgb(180, 180, 180)
   }
+
+

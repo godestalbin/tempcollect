@@ -1,4 +1,5 @@
 from flask import render_template, request
+from datetime import datetime
 from flaskapp import tempCollectApp
 from flaskapp import firbeix
 from flaskapp import wattignies
@@ -25,15 +26,38 @@ def index():
 
 @tempCollectApp.route('/tempChart')
 def tempChart():
+    startDateArg = request.args.get('startDate').split('-')
+    endDateArg = request.args.get('endDate').split('-')
+    startDate = datetime(int(startDateArg[0]), int(startDateArg[1]), int(startDateArg[2]))
+    endDate = datetime(int(endDateArg[0]), int(endDateArg[1]), int(endDateArg[2]), 23, 59)
+    groupBy = int(request.args.get('groupBy'))
     firbeixTemp = []
     xAxis = []
-    for temp in mongo.get({'city': 'Firbeix'}):
-        xAxis = xAxis + [temp['date'].strftime('%Y-%m-%d %H:%M:%S')]
-        firbeixTemp = firbeixTemp + [temp['temp']]
+    groupByCount = 1
+    tempSum = 0
+    for temp in mongo.get({'date': { '$gte': startDate, '$lte': endDate }, 'city': 'Firbeix'}):
+        tempSum += temp['temp']
+        if groupByCount == 1: xAxis += [temp['date'].strftime('%Y-%m-%d %H:%M:%S')]
+        if groupByCount == groupBy: # Group by reached, we calculate the value
+            firbeixTemp += [round(tempSum / groupBy, 1)]
+            groupByCount = 0
+            tempSum = 0
+        groupByCount += 1
+    # print('groupByCount:', groupByCount)
+    # if groupByCount < groupBy:
+    #     firbeixTemp += [tempSum / groupByCount]
+            
     wattigniesTemp = []
-    for temp in mongo.get({'city': 'Wattignies'}):
-        wattigniesTemp = wattigniesTemp + [temp['temp']]
-
+    groupByCount = 1
+    tempSum = 0
+    for temp in mongo.get({'date': { '$gte': startDate, '$lte': endDate }, 'city': 'Wattignies'}):
+        # wattigniesTemp = wattigniesTemp + [temp['temp']]
+        tempSum += temp['temp']
+        if groupByCount == groupBy: # Group by reached, we calculate the value
+            wattigniesTemp += [round(tempSum / groupBy, 1)]
+            groupByCount = 0
+            tempSum = 0
+        groupByCount += 1
 
     data1 = {
                     'name': 'Firbeix',
@@ -43,7 +67,8 @@ def tempChart():
                     'name': 'Wattignies',
                     'data': wattigniesTemp
                 }
-    return render_template('tempchart.html', xAxis=xAxis, data1=data1, data2=data2)
+    dateRange = "&startDate=" + request.args.get('startDate').rstrip() + "&endDate=" + request.args.get('endDate')
+    return render_template('tempchart.html', groupBy=groupBy, dateRange=dateRange, xAxis=xAxis, data1=data1, data2=data2)
 
 @tempCollectApp.route('/pullNewVersion', methods=['POST'])
 def pullNewVersion():

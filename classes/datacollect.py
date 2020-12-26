@@ -1,4 +1,4 @@
-print(__name__)
+# print('datacollect:', __name__)
 import threading
 import time
 from datetime import datetime # Tmp for printing time
