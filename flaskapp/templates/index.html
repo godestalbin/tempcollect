@@ -41,7 +41,7 @@
             tomorrow = new Date()
             tomorrow.setDate(tomorrow.getDate() + 1)
             startDate = new Date()
-            startDate.setDate(startDate.getDate() - 7)
+            startDate.setDate(startDate.getDate() )
             document.getElementById('leftArrow').href = '/tempChart?groupBy=1&startDate=' + startDate.toISOString().substring(0,10) + '&endDate=' + tomorrow.toISOString().substring(0,10)
         </script>    
 </body>
