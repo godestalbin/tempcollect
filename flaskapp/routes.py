@@ -4,6 +4,7 @@ from flaskapp import tempCollectApp
 from flaskapp import firbeix
 from flaskapp import wattignies
 from flaskapp import mongo
+from classes import meteodataset
 import os
 import platform
 if platform.system() == 'Linux':
@@ -70,6 +71,12 @@ def tempChart():
     # dateRange = "&startDate=" + request.args.get('startDate').rstrip() + "&endDate=" + request.args.get('endDate')
     # print(dateRange)
     return render_template('tempchart.html', groupBy=groupBy, startDate=request.args.get('startDate').rstrip(), endDate=request.args.get('endDate'), xAxis=xAxis, data1=data1, data2=data2)
+
+@tempCollectApp.route('/meteo')
+def meteo():
+    # meteo = firbeix.getMeteo()
+    meteo = wattignies.getMeteo()
+    return render_template('meteo.html', meteo=meteo)
 
 @tempCollectApp.route('/pullNewVersion', methods=['POST'])
 def pullNewVersion():
