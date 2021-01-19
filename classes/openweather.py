@@ -76,7 +76,7 @@ class OpenWeather:
                 # Wind speed
                 if 'wind' in data:
                     if 'speed' in data['wind']:
-                        meteo.wind += [data['wind']['speed']]
+                        meteo.wind += [data['wind']['speed']*3.6]
                     if 'deg' in data['wind']:
                         windDirection = int((float(data['wind']['deg'])+22.5)/45 % 8)
                         meteo.windDirection += [{'y': 0, 'windDirection': str(data['wind']['deg'])+'°' , 'marker': {'symbol': 'url(/static/images/Wind' + str(windDirection) + '.png)'} }]
