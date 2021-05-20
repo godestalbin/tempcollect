@@ -76,13 +76,13 @@ def tempChart():
 def meteo():
     # meteo = firbeix.getMeteo()
     meteo = wattignies.getMeteo()
-    return render_template('meteo.html', meteo=meteo)
+    return render_template('meteo.html', meteo=meteo, previous='/', next='/meteoFirbeix')
 
 @tempCollectApp.route('/meteoFirbeix')
 def meteoFirbeix():
     # meteo = firbeix.getMeteo()
     meteo = firbeix.getMeteo()
-    return render_template('meteo.html', meteo=meteo)
+    return render_template('meteo.html', meteo=meteo, previous='meteo', next='')
 
 @tempCollectApp.route('/pullNewVersion', methods=['POST'])
 def pullNewVersion():

@@ -27,15 +27,17 @@
 
         <div>
             <div class='leftFloat'>
-                <a id=leftArrow href="/">
+                <a id=leftArrow href={{previous}}>
                     <img alt="Left arrow" src="/static/images/Left arrow.png">
                 </a>
             </div>
+            {% if next != '' %}
             <div class='leftFloat'>
-                <a id=rightArrow href="/meteoFirbeix">
+                <a id=rightArrow href={{next}}>
                     <img alt="Right arrow" src="/static/images/Right arrow.png">
                 </a>
             </div>
+            {% endif %}
         </div>        
 
 <script type="text/javascript">
