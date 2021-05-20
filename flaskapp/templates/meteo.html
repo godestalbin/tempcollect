@@ -26,10 +26,17 @@
         <div id="meteoWidget" style="min-width: 1000px; max-width: 2000px; height: 400px; margin: 0 auto; padding-top: 10px;"></div>
 
         <div>
-            <a id=leftArrow href="/">
-                <img alt="Left arrow" src="/static/images/Left arrow.png">
-            </a>
-        </div>
+            <div class='leftFloat'>
+                <a id=leftArrow href="/">
+                    <img alt="Left arrow" src="/static/images/Left arrow.png">
+                </a>
+            </div>
+            <div class='leftFloat'>
+                <a id=rightArrow href="/meteoFirbeix">
+                    <img alt="Right arrow" src="/static/images/Right arrow.png">
+                </a>
+            </div>
+        </div>        
 
 <script type="text/javascript">
     const chart = Highcharts.chart('meteoWidget', {

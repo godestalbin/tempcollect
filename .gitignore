@@ -1,2 +1,4 @@
 /.tempcollect/
 /__pycache__/
+/classes/__pycache__/
+/flaskapp/__pycache__/

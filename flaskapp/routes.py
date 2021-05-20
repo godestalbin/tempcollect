@@ -78,6 +78,12 @@ def meteo():
     meteo = wattignies.getMeteo()
     return render_template('meteo.html', meteo=meteo)
 
+@tempCollectApp.route('/meteoFirbeix')
+def meteoFirbeix():
+    # meteo = firbeix.getMeteo()
+    meteo = firbeix.getMeteo()
+    return render_template('meteo.html', meteo=meteo)
+
 @tempCollectApp.route('/pullNewVersion', methods=['POST'])
 def pullNewVersion():
     # return render_template('pullNewVersion.html')
