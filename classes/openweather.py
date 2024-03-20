@@ -85,7 +85,7 @@ class OpenWeather:
                 if convertedDate[11:13] in ['07', '08', '09'] or convertedDate[11:13] in ['14', '15', '16']:
                     if 'weather' in data:
                         if 'id' in data['weather'][0]:
-                            meteo.weatherIcon += [{'y': 0, 'weather': str(data['weather'][0]['main']) , 'marker': {'symbol': 'url(/static/images/' + self.METEO_ICON.getIcon(data['weather'][0]['id']) +')'} }]
+                            meteo.weatherIcon += [{'y': 0, 'weather': str(data['weather'][0]['main']) , 'marker': {'enabled': 1, 'symbol': 'url(/static/images/' + self.METEO_ICON.getIcon(data['weather'][0]['id']) +')'} }]
                 else: meteo.weatherIcon += [{'y': 0, 'weather': str(data['weather'][0]['main'])}]
 
                 recordCount += 1
@@ -102,7 +102,7 @@ class OpenWeather:
                 windDirection['y'] = minTemp - 2
             # Adjust y position for weather icon
             for weatherIcon in meteo.weatherIcon:
-                weatherIcon['y'] = maxTemp + 2
+                weatherIcon['y'] = maxTemp + 1
             return meteo
 
 
